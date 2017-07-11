@@ -13,7 +13,11 @@ function init() {
     crystalArray[crystalArray.length] = crystalNumber;
   }
   currentNum = 0;
-  $("#target").text("Number: " + targetNumber);
+  $("#wins").text("Wins: " + win);
+  $("#losses").text("Losses: " + loss);
+  $("#target").text("Target Number: ");
+  $("#whiteboard").text("Current Number: " + currentNum)
+  $("#target").text("Target Number: " + targetNumber);
   console.log("crystalArray: " + crystalArray);
   console.log("set this crystal array index to ruby" + crystalArray[0]);
 
@@ -28,12 +32,18 @@ $(document).ready(function() {
   $(".crystals").click(function() {
     var crystalValue = $(this).attr('id');
 
+      if (currentNum === targetNumber) {
+        alert("you win");
+        win++;
+        $("#wins").text("Wins: " + win);
+        init();
+      }
+
       if (currentNum > targetNumber) {
         alert("You lose");
         loss ++;
-        targetNumber = "";
+        $("#losses").text("Losses: " + loss);
         init();
-
       }
 
       else if (crystalValue === "ruby") {
